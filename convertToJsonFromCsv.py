@@ -4,11 +4,17 @@ import json
 data = {}
 id = 1
 
-with open('quotes.csv', 'r') as rf:
-    reader = csv.DictReader(rf, delimiter=';')
+# inFile = 'quotes.csv'
+# outFile = 'quotes.json'
+inFile = 'joke.csv'
+outFile = 'joke.json'
+
+with open(inFile, 'r') as rf:
+    reader = csv.DictReader(rf, delimiter='|')
     for row in reader:
+        print(row)
         data[id] = row
         id += 1
 
-    with open('quote.json', 'w') as jsonFile:
+    with open(outFile, 'w') as jsonFile:
         jsonFile.write(json.dumps(data, indent=4))
